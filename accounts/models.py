@@ -1,6 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
 class User(AbstractUser):
-    pass
+    email = models.EmailField(unique=True)
+    nickname = models.CharField(max_length=30)
+    birth_date = models.DateField()
+    gender = models.CharField(max_length=10, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+
+    def soft_delete(self):
+        self.is_active = False
+        self.save()
+        return True
+
+    def delete(self, using=None, keep_parents=False):
+        self.soft_delete()
+        return True
