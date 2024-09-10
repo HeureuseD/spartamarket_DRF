@@ -4,16 +4,21 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator
 from .models import Product
 from .serializers import ProductSerializer
 
 class ProductList(APIView):
-    # parser_classes = (MultiPartParser, FormParser)
-
     def get(self, request):
-        products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+        page = request.GET.get('page','1') # 페이지
+        products_list = Product.objects.all()
+        paginator = Paginator(products_list, 10)
+        products = paginator.get_page(page)
+        serializer = ProductSerializer(products.object_list, many=True)
+        return Response({"전체상품 수" : paginator.count,
+                        "전체 페이지" :  paginator.num_pages,
+                        "현재 페이지" : products.number,
+                        "목록":serializer.data})
 
     def post(self, request, *args, **kwargs):
         permission_classes = [IsAuthenticated]
