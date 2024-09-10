@@ -167,7 +167,9 @@ python manage.py runserver
 
 
 #### 회원탈퇴. 비밀번호 입력 필요.
-![image](https://github.com/user-attachments/assets/d6af8edf-3934-4b59-90b8-80bbacf4a5f5)  ![image](https://github.com/user-attachments/assets/bd7986d7-ea11-4015-813c-b9361028fd06)
+![image](https://github.com/user-attachments/assets/d6af8edf-3934-4b59-90b8-80bbacf4a5f5) 
+&nbsp;
+![image](https://github.com/user-attachments/assets/bd7986d7-ea11-4015-813c-b9361028fd06)
 
 
 &nbsp;
