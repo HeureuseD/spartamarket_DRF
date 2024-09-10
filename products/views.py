@@ -8,7 +8,7 @@ from .models import Product
 from .serializers import ProductSerializer
 
 class ProductList(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+    # parser_classes = (MultiPartParser, FormParser)
 
     def get(self, request):
         products = Product.objects.all()
